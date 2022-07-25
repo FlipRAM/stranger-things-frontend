@@ -11,6 +11,7 @@ const getRealityClass = (hereIsTheUpsideDownWorld) => (
 const strangerThingsConfig = {
   url: process.env.REACT_APP_HAWKINS_URL,
   timeout: parseInt(process.env.REACT_APP_HAWKINS_TIMEOUT, 10),
+  env: process.env.ENVIRONMENT_TYPE,
 };
 
 const upsideDownConfig = {
@@ -109,8 +110,6 @@ class StrangerThings extends React.Component {
     const {
       hereIsTheUpsideDownWorld, characterName, characters, page,
     } = this.state;
-    const environment = process.env.NODE_ENV;
-
     return (
       <div
         className={ `reality ${getRealityClass(
@@ -119,7 +118,7 @@ class StrangerThings extends React.Component {
       >
         <div className="content strangerfy">
           <div className="change-reality">
-            {environment === 'production' && <p>Em desenvolvimento</p>}
+            {process.env.ENVIRONMENT_TYPE === 'production' && <p>Em desenvolvimento</p>}
             <button type="button" onClick={ this.changeRealityClick }>
               {' '}
               Mudar de Realidade
